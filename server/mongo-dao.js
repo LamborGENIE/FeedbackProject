@@ -34,9 +34,10 @@ export async function respondToMessage(message_id, response){
   const client = await mongoClient.connect();
   const db = client.db(dbName);
   const collection = db.collection(messageCollectionName);
-  const result = await collection.updateOne({ messageID: message_id}, { $set: {messageResponse : response}});
-  console.log(`${result.modifiedCount} document(s) updated`);
+  const result = await collection.updateOne({ messageID: +message_id}, { $set: response});
+  //console.log(`${result.modifiedCount} document(s) updated`);
   client.close();
+  return result;
 }
 
 //Read One Employee Doc
@@ -60,11 +61,11 @@ export async function readOneMessageDocument(id){
 }
 
 //Read All of an Employee's Messages
-async function readEmployeeAllMessages(employee_id){
+export async function readAllEmployeeMessages(id){
   const client = await MongoClient.connect(url);
   const db = client.db(dbName);
   const collection = db.collection(messageCollectionName);
-  const documents = await collection.find({from : employee_id}).toArray();
+  const documents = await collection.find({from : +id}).toArray();
   console.log(documents);
   client.close();
   return documents;
