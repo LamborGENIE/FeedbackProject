@@ -1,34 +1,21 @@
-import React from 'react';
-// , { useEffect, useState }
+import React, { useEffect, useState } from 'react';
+
 function ViewMessages() {
-const messages = [
-    {messageID: 2,
-    from: 2,
-    to: 1,
-    message: "I'm quitting",
-    response: "Please Don't",
-    sentiment: "Negative"
- }, {messageID: 3,
-    from: 3,
-    to: 4,
-    message: "I'm quitting",
-    response: "Okay",
-    sentiment: "Negative" } ]
 
-    // const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([]);
 
-    // const getMessages = function() {
-    //     fetch(`http://127.0.0.1:3001/api/messages/2`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         setMessages(data)
-    //         console.log(data)
-    //     })
-    //     .catch(err => {console.log(err)})
-    // }
+    const getMessages = function() {
+        fetch(`http://127.0.0.1:3001/api/readAllEmployeeMessages/3`)
+        .then(response => response.json())
+        .then(data => {
+            setMessages(data)
+            console.log(data)
+        })
+        .catch(err => {console.log(err)})
+    }
 
     
-    // useEffect(() => {getMessages()}, []);
+    useEffect(() => {getMessages()}, []);
     return(
         <>
         <h1>Messages</h1>
