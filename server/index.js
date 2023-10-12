@@ -48,6 +48,15 @@ app.put('/api/message/respond/:id', async (req, res) => {
     res.status(201).json(message)
 })
 
+app.post('/api/login', async (req, res) => {
+    const userToVerify = req.body;
+    const user = await dao.verifyUser(userToVerify);
+    if (!user){
+        res.status(404).json({response: "Invalid credentials"})
+    }
+    res.status(201).json(user);
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })

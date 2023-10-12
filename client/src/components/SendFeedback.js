@@ -1,48 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from "react";
 
-function ViewMessages() {
+function SendFeedback() {
+    const user = {
+        employeeID : 1,
+        managerID : 4,
 
-    const [messages, setMessages] = useState([]);
+    }
+    const [form, setForm] = useState({
+        messageID: "",
+        to: user.managerID,
+        from: user.employeeID,
+        message: "",
+        response: "",
+      });
 
-    const getMessages = function() {
-        fetch(`http://127.0.0.1:3001/api/readAllEmployeeMessages/3`)
-        .then(response => response.json())
-        .then(data => {
-            setMessages(data)
-            console.log(data)
+    function updateForm(value) {
+    return setForm((prev) => {
+        return { ...prev, ...value };
+    });
+    }
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const newMessage = {...form}
+        await fetch("http://127.0.0.1:3001/api/message/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newMessage),
         })
-        .catch(err => {console.log(err)})
+        .catch(error => {
+            console.log("Something went wrong")
+        })
+
+        setForm({
+            messageID: "",
+            to: user.managerID,
+            from: user.employeeID,
+            message: "",
+            response: "",
+        })
+        
+        
     }
 
-    
-    useEffect(() => {getMessages()}, []);
-    return(
+    return (
         <>
-        <h1>Messages</h1>
-        <div >
-        <ul>
-            {messages.map (
-            (message) => {
-            return <div key={message.messageID}>
-                <div>
-                Message: {message.message}
-                </div>
-                <div>
-                Response: {message.response}
-                </div>
-                
+        <form onSubmit={onSubmit}>
+            <label>Feedback:</label>
+            <input label="Feedback" value={form.message} onChange={(e) => updateForm({message: e.target.value})} >
+            </input>
+            <div className="form-group">
+                <input
+                type="submit"
+                value="Send Feedback"
+                className="btn btn-primary"
+                />
             </div>
-            }
-        )}
-        </ul>
-
-        </div>
+            
+        </form>
         
         </>
-        
-    );
-
-
+    )
 }
 
-export default ViewMessages;
+export default SendFeedback;

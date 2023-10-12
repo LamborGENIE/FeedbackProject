@@ -71,6 +71,15 @@ export async function readAllEmployeeMessages(id){
   return documents;
 }
 
+export async function verifyUser(user) {
+  const client = await MongoClient.connect(url);
+  const db = client.db(dbName);
+  const collection = db.collection(employeeCollectionName);
+  const userDoc = await collection.findOne({username: user.username, password: user.password})
+  client.close()
+  return userDoc;
+}
+
 // USAGE
 async function main() {
   // let insertedId = await createMessageDocument();

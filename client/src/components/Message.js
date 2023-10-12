@@ -5,7 +5,7 @@ function ViewMessage() {
     const [message, setMessage] = useState([]);
 
     const getMessage = function() {
-        fetch(`http://127.0.0.1:3001/api/message/3`)
+        fetch(`http://127.0.0.1:3001/api/message/2`)
         .then(response => response.json())
         .then(data => {
             setMessage(data)
