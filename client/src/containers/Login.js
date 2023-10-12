@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom';
 
 import "./Login.css";
 
-export default function Login({currentUser, setCurrentUser}) {
+export default function Login({currentUser, setCurrentUser, setIsLoggedIn}) {
     const navigate = useNavigate();
     
     const [userToVerify, setUserToVerify] = useState({
@@ -30,8 +30,9 @@ export default function Login({currentUser, setCurrentUser}) {
             })
             .then(response => response.json())
             .then(data => {
-                setCurrentUser(data)
-                navigate('/view');
+                setCurrentUser(data);
+                setIsLoggedIn(true);
+                navigate('/view')
             })
             .catch(error => {
                 console.log("Something went wrong")

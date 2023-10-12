@@ -1,12 +1,9 @@
 import React, {useState} from "react";
 
-function SendFeedback({currentUser}) {
-    const user = {
-        employeeID : 1,
-        managerID : 4,
-
-    }
+function SendFeedback({currentUser, selectedMessage}) {
+    
     const [form, setForm] = useState({
+        _id : "",
         messageID: "",
         to: currentUser.managerID,
         from: currentUser.employeeID,
@@ -21,13 +18,13 @@ function SendFeedback({currentUser}) {
     }
     const onSubmit = async (e) => {
         e.preventDefault();
-        const newMessage = {...form}
+        const updatedMessage = {...form}
         await fetch("http://127.0.0.1:3001/api/message/", {
-            method: "POST",
+            method: "Put",
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(newMessage),
+              body: JSON.stringify(updatedMessage),
         })
         .catch(error => {
             console.log("Something went wrong")
@@ -47,6 +44,8 @@ function SendFeedback({currentUser}) {
     return (
         <>
         <form onSubmit={onSubmit}>
+            <h3>Message:</h3>
+            <p>{selectedMessage.message} </p>
             <label>Response:</label>
             <input label="Response" value={form.response} onChange={(e) => updateForm({response: e.target.value})} >
             </input>

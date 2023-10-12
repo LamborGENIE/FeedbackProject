@@ -43,9 +43,10 @@ app.post('/api/message/', async (req,res) => {
 })
 
 //Adds a response section to an existing message, takes in a JSON ex. {"messageResponse", "response"}
-app.put('/api/message/respond/:id', async (req, res) => {
+app.put('/api/message/respond/', async (req, res) => {
     const responseMessage = req.body
-    const message = await dao.respondToMessage(req.params.id, responseMessage)
+    console.log(req.body)
+    const message = await dao.respondToMessage(req.body._id, responseMessage)
     res.status(201).json(message)
 })
 

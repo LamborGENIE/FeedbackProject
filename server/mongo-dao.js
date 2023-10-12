@@ -1,4 +1,4 @@
-import {MongoClient} from 'mongodb'; 
+import {MongoClient, ObjectId} from 'mongodb'; 
 const url = "mongodb://127.0.0.1:27017";
 const dbName = 'feedback_db';
 const employeeCollectionName = 'employee';
@@ -30,11 +30,12 @@ export async function createMessageDocument(message) {
 }
 
 //Add Response to Message
-export async function respondToMessage(message_id, response){
+export async function respondToMessage(_id, response){
+  delete response._id;
   const client = await mongoClient.connect();
   const db = client.db(dbName);
   const collection = db.collection(messageCollectionName);
-  const result = await collection.updateOne({ messageID: +message_id}, { $set: response});
+  const result = await collection.updateOne({"_id" : new ObjectId(_id)}, { $set: response});
   //console.log(`${result.modifiedCount} document(s) updated`);
   client.close();
   return result;

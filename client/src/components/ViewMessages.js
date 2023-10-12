@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-function ViewMessages({currentUser}) {
+function ViewMessages({currentUser, setSelectedMessage}) {
 
     const [messages, setMessages] = useState([]);
-
+    
     const getMessages = function() {
         fetch(`http://127.0.0.1:3001/api/readAllEmployeeMessages/${currentUser.employeeID}`)
         .then(response => response.json())
@@ -24,8 +24,8 @@ function ViewMessages({currentUser}) {
         
             {messages.map (
             (message) => {
-            return <div key={message.messageID}>
-                <div>
+            return <div key={message._id}>
+                <div onClick={setSelectedMessage(message)}>
                 Message: {message.message}
                 </div>
                 <div>

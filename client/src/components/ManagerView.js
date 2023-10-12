@@ -4,13 +4,15 @@ import SendResponse from './SendResponse.js';
 import ViewMessages from './ViewMessages.js';
 
 function EmployeeView({currentUser}) {
-return (
-    <>
-        <SendResponse currentUser={currentUser}/>
-        <ViewMessages currentUser={currentUser}/>
-    </>
+    const [selectedMessage, setSelectedMessage] = useState({message : ""})
 
-)
-}
+    return (
+        <>
+            <SendResponse currentUser={currentUser} selectedMessage={selectedMessage} />
+            <ViewMessages currentUser={currentUser} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}/>
+        </>
+
+    )
+    }
 
 export default EmployeeView;
