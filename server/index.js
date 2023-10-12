@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import * as dao from './mongo-dao.js' ;
+import {spawn} from 'child_process';
 var app = express();
 
 app.use(express.json()); //Parse JSON body
@@ -56,6 +57,43 @@ app.post('/api/login', async (req, res) => {
     }
     res.status(201).json(user);
 })
+
+app.post('/api/predict/', async (req, res) => {
+    const input = req.body;
+    const data = JSON.stringify(input)
+    console.log({data});
+
+    const pythonScript = spawn('python', ['predict.py']);
+
+    pythonScript.stdin.write(data);
+    pythonScript.stdin.end();
+    
+    let predictionData = '';
+
+    // Collect the predicted data from stdout of the predict.py script
+    pythonScript.stdout.on('data', (data) => {
+        //console.log(data)
+        predictionData += data.toString();
+    });
+
+    pythonScript.on('close', (code) => {
+        console.log(code)
+        console.log(predictionData)
+        if (code === 0) {
+            // Parse the predicted data
+            //const predictions = JSON.parse(predictionData);
+        
+            console.log({predictionData});
+
+            // Return the predictions as the response
+            res.send(predictionData);
+        } else {
+            // Return an error response
+            res.status(500).json({ error: 'Prediction failed' });
+        }
+    });
+    //console.log("Done")
+  })
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
