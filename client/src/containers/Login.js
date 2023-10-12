@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate} from 'react-router-dom';
 
 import "./Login.css";
 
 export default function Login({currentUser, setCurrentUser}) {
-
+    const navigate = useNavigate();
     
     const [userToVerify, setUserToVerify] = useState({
         
@@ -30,16 +31,13 @@ export default function Login({currentUser, setCurrentUser}) {
             .then(response => response.json())
             .then(data => {
                 setCurrentUser(data)
-                console.log(currentUser)
+                navigate('/view');
             })
             .catch(error => {
                 console.log("Something went wrong")
             })
             
-            
-    
-
-  }
+      }
 
   return (
 

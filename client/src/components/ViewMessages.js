@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-function ViewMessages() {
+function ViewMessages({currentUser}) {
 
     const [messages, setMessages] = useState([]);
 
     const getMessages = function() {
-        fetch(`http://127.0.0.1:3001/api/readAllEmployeeMessages/1`)
+        fetch(`http://127.0.0.1:3001/api/readAllEmployeeMessages/${currentUser.employeeID}`)
         .then(response => response.json())
         .then(data => {
             setMessages(data)

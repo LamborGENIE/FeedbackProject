@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function SendFeedback() {
+function SendFeedback({currentUser}) {
     const user = {
         employeeID : 1,
         managerID : 4,
@@ -8,8 +8,8 @@ function SendFeedback() {
     }
     const [form, setForm] = useState({
         messageID: "",
-        to: user.managerID,
-        from: user.employeeID,
+        to: currentUser.managerID,
+        from: currentUser.employeeID,
         message: "",
         response: "",
       });
@@ -35,8 +35,8 @@ function SendFeedback() {
 
         setForm({
             messageID: "",
-            to: user.managerID,
-            from: user.employeeID,
+            to: currentUser.managerID,
+            from: currentUser.employeeID,
             message: "",
             response: "",
         })

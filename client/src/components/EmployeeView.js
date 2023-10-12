@@ -3,11 +3,11 @@ import SendFeedback from './SendFeedback.js';
 
 import ViewMessages from './ViewMessages.js';
 
-function EmployeeView() {
+function EmployeeView({currentUser}) {
 return (
     <>
-        <SendFeedback />
-        <ViewMessages />
+        <SendFeedback currentUser={currentUser}/>
+        <ViewMessages currentUser={currentUser}/>
     </>
 
 )
