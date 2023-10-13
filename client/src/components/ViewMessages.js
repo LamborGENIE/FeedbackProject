@@ -20,7 +20,7 @@ function ViewMessages({currentUser, setSelectedMessage, selectedMessage}) {
     }
     
     
-    // useEffect(() => {getMessages()}, [] );
+    useEffect(() => {getMessages()}, [] );
     return(
         <>
         <section id="messagesList">

@@ -43,16 +43,16 @@ export default function Login({currentUser, setCurrentUser, setIsLoggedIn}) {
   return (
 
     <div className="Login">
-      <form onSubmit={onSubmit}>
+      <form id="login-form" onSubmit={onSubmit}>
+        
         <div>
             <label>Username: </label>
             <input type="text" value={userToVerify.username} onChange={(e) =>updateUserToVerify({username: e.target.value})}></input>
-        </div>
-        <div>
+        
+        
             <label>Password: </label>
             <input type="password" value={userToVerify.password} onChange={(e) =>updateUserToVerify({password: e.target.value})}></input>
-        </div>
-        <div>
+        
             <input type="submit" />
         </div>
 

@@ -36,12 +36,12 @@ function SendFeedback({currentUser, selectedMessage}) {
 
     return (
         <>
-        <form onSubmit={onSubmit}>
+        <form className="feedback-form" onSubmit={onSubmit}>
             <h3>Message:</h3>
             <p>{selectedMessage.message} </p>
             <label>Response:</label>
-            <input label="Response" value={form.response} onChange={(e) => updateForm({_id: selectedMessage._id, response: e.target.value})} >
-            </input>
+            <textarea className="textInput" label="Response" value={form.response} onChange={(e) => updateForm({_id: selectedMessage._id, response: e.target.value})} >
+            </textarea>
             <div className="form-group">
                 <input
                 type="submit"

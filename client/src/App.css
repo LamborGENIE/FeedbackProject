@@ -57,8 +57,8 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   --dark1: black;
   --light1: white;
-  --dark2: darkblue;
-  --light2: lightblue;
+  --dark2: rgb(3, 38, 85);
+  --light2: rgba(141, 147, 150, 0.493);
   background-color: var(--light1);
   color: var(--dark1);
 }
@@ -68,15 +68,15 @@ button {
   color: var(--dark2);
   font-weight: bold;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid var(--dark2);
 }
 
-input {
+input, textarea {
   display: block;
   width: 95%;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1rem;
   line-height: 1.5em;
   border: none;
   border-bottom: 2px solid var(--dark2);
@@ -106,12 +106,36 @@ label {
   padding: 10px;
   margin: 10px;
   border: 1px solid var(--dark2);
-  border-radius: 5px;
+  border-radius: 3px;
   color: var(--dark2);
   background-color: var(--light2);
   font-weight: bold;
   cursor: pointer;
 }
+
+.viewContainer {
+  display: flex;
+}
+
+form {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--dark2);
+  border-radius: 3px;
+  color: var(--dark2);
+  background-color: var(--light2);
+  font-weight: bold;
+}
+
+.feedback-form {
+  width: 50%;
+  height: 100%;
+}
+
+.textInput {
+  height: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  }
 
 /* Character page */
 h1#name {
@@ -137,32 +161,3 @@ h1#name {
   font-size: 1.1em;
 }
 
-section#planets,
-section#characters,
-section#films {
-  margin: 50px;
-}
-
-section#planets ul,
-section#characters ul,
-section#films ul {
-  list-style-type: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-section#planets a,
-section#characters a,
-section#films a {
-  display: inline-block;
-  text-decoration: none;
-  font-size: 1.1em;
-
-  background-color: var(--light2);
-  color: var(--dark2);
-  font-weight: bold;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--dark2);
-}

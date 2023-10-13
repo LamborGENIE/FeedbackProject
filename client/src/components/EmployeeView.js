@@ -6,8 +6,11 @@ import ViewMessages from './ViewMessages.js';
 function EmployeeView({currentUser, setSelectedMessage, selectedMessage}) {
 return (
     <>
-        <SendFeedback currentUser={currentUser} selectedMessage={selectedMessage}/>
+        <section className='viewContainer'>
         <ViewMessages currentUser={currentUser} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}/>
+            <SendFeedback currentUser={currentUser} selectedMessage={selectedMessage}/>
+            
+        </section>
     </>
 
 )

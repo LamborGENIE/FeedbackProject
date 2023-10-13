@@ -8,8 +8,10 @@ function ManagerView({currentUser, selectedMessage, setSelectedMessage}) {
 
     return (
         <>
-            <SendResponse currentUser={currentUser} selectedMessage={selectedMessage} />
-            <ViewMessages currentUser={currentUser} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}/>
+            <section className='viewContainer'> 
+                <ViewMessages currentUser={currentUser} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}/>
+                <SendResponse currentUser={currentUser} selectedMessage={selectedMessage} />
+            </section>
         </>
 
     )

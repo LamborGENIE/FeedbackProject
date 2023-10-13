@@ -4,6 +4,7 @@ import View from "./containers/View.js"
 import  {useState} from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './containers/Login';
+import Header from './components/Header';
 
 
 
@@ -13,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path="/" element={isLoggedIn === false ? <View currentUser={currentUser} 
               setCurrentUser={setCurrentUser} /> : 

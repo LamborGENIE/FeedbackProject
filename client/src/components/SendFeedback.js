@@ -46,10 +46,10 @@ function SendFeedback({currentUser}) {
 
     return (
         <>
-        <form onSubmit={onSubmit}>
+        <form className="feedback-form" onSubmit={onSubmit}>
             <label>Feedback:</label>
-            <input label="Feedback" value={form.message} onChange={(e) => updateForm({message: e.target.value})} >
-            </input>
+            <textarea className="textInput" label="Feedback" value={form.message} onChange={(e) => updateForm({message: e.target.value})} >
+            </textarea>
             <div className="form-group">
                 <input
                 type="submit"
