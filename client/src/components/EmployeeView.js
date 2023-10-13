@@ -3,11 +3,11 @@ import SendFeedback from './SendFeedback.js';
 
 import ViewMessages from './ViewMessages.js';
 
-function EmployeeView({currentUser}) {
+function EmployeeView({currentUser, setSelectedMessage, selectedMessage}) {
 return (
     <>
-        <SendFeedback currentUser={currentUser}/>
-        <ViewMessages currentUser={currentUser}/>
+        <SendFeedback currentUser={currentUser} selectedMessage={selectedMessage}/>
+        <ViewMessages currentUser={currentUser} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}/>
     </>
 
 )

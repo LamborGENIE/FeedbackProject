@@ -3,11 +3,7 @@ import React, {useState} from "react";
 function SendFeedback({currentUser, selectedMessage}) {
     
     const [form, setForm] = useState({
-        _id : "",
-        messageID: "",
-        to: currentUser.managerID,
-        from: currentUser.employeeID,
-        message: "",
+        _id : selectedMessage._id,
         response: "",
       });
 
@@ -19,8 +15,8 @@ function SendFeedback({currentUser, selectedMessage}) {
     const onSubmit = async (e) => {
         e.preventDefault();
         const updatedMessage = {...form}
-        await fetch("http://127.0.0.1:3001/api/message/", {
-            method: "Put",
+        await fetch("http://127.0.0.1:3001/api/message/respond", {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
               },
@@ -31,10 +27,7 @@ function SendFeedback({currentUser, selectedMessage}) {
         })
 
         setForm({
-            messageID: "",
-            to: currentUser.managerID,
-            from: currentUser.employeeID,
-            message: "",
+            _id : selectedMessage._id,
             response: "",
         })
         
@@ -47,7 +40,7 @@ function SendFeedback({currentUser, selectedMessage}) {
             <h3>Message:</h3>
             <p>{selectedMessage.message} </p>
             <label>Response:</label>
-            <input label="Response" value={form.response} onChange={(e) => updateForm({response: e.target.value})} >
+            <input label="Response" value={form.response} onChange={(e) => updateForm({_id: selectedMessage._id, response: e.target.value})} >
             </input>
             <div className="form-group">
                 <input

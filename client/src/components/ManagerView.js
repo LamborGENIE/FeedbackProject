@@ -3,8 +3,8 @@ import SendResponse from './SendResponse.js';
 
 import ViewMessages from './ViewMessages.js';
 
-function EmployeeView({currentUser}) {
-    const [selectedMessage, setSelectedMessage] = useState({message : ""})
+function ManagerView({currentUser, selectedMessage, setSelectedMessage}) {
+    
 
     return (
         <>
@@ -15,4 +15,4 @@ function EmployeeView({currentUser}) {
     )
     }
 
-export default EmployeeView;
+export default ManagerView;

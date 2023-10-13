@@ -13,9 +13,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {JSON.stringify(currentUser)}
-        {JSON.stringify(isLoggedIn)}
-
+        
         <Routes>
           <Route path="/" element={isLoggedIn === false ? <View currentUser={currentUser} 
               setCurrentUser={setCurrentUser} /> : 

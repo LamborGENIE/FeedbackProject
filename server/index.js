@@ -45,7 +45,6 @@ app.post('/api/message/', async (req,res) => {
 //Adds a response section to an existing message, takes in a JSON ex. {"messageResponse", "response"}
 app.put('/api/message/respond/', async (req, res) => {
     const responseMessage = req.body
-    console.log(req.body)
     const message = await dao.respondToMessage(req.body._id, responseMessage)
     res.status(201).json(message)
 })
@@ -95,6 +94,13 @@ app.post('/api/predict/', async (req, res) => {
     });
     //console.log("Done")
   })
+
+  app.post('/api/message/retrieve', async (req, res) => {
+    const retrieve = req.body
+    const messages = await dao.retrieveMessages(retrieve)
+    res.status(201).json(messages)
+})
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

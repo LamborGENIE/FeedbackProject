@@ -81,6 +81,16 @@ export async function verifyUser(user) {
   return userDoc;
 }
 
+export async function retrieveMessages(retrieve){
+  const client = await MongoClient.connect(url);
+  const db = client.db(dbName);
+  const collection = db.collection(messageCollectionName);
+  const documents = retrieve.role === "Employee" ? await collection.find({from : +retrieve.employeeID}).toArray() 
+  : await collection.find({to : +retrieve.employeeID}).toArray();
+  client.close();
+  return documents;
+}
+
 // USAGE
 async function main() {
   // let insertedId = await createMessageDocument();
